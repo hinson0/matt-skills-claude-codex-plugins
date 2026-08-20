@@ -1,0 +1,35 @@
+{
+  "name": "mattpocock-skills",
+  "version": "1.2.3+codex.885e2ca4d842",
+  "description": "Unofficial Codex packaging of Matt Pocock's MIT-licensed agent skills for real engineering.",
+  "author": {
+    "name": "hinson0",
+    "url": "https://github.com/hinson0"
+  },
+  "homepage": "https://github.com/mattpocock/skills",
+  "repository": "https://github.com/hinson0/matt-skills-claude-codex-plugins",
+  "license": "MIT",
+  "keywords": [
+    "engineering",
+    "skills",
+    "tdd",
+    "code-review",
+    "productivity"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Matt Pocock Skills",
+    "shortDescription": "Engineering and productivity skills for Codex",
+    "longDescription": "Unofficial Codex packaging of the promoted skills from mattpocock/skills.",
+    "developerName": "hinson0",
+    "category": "Developer Tools",
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "Use the appropriate Matt Pocock skill for this task."
+    ]
+  }
+}

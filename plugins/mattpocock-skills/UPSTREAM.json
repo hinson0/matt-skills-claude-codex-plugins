@@ -1,0 +1,135 @@
+{
+  "repository": "https://github.com/mattpocock/skills",
+  "commit": "885e2ca4d842d139e9aef4e48d366c63cb1b8013",
+  "version": "1.2.3",
+  "skills": [
+    {
+      "name": "ask-matt",
+      "path": "./skills/engineering/ask-matt"
+    },
+    {
+      "name": "diagnosing-bugs",
+      "path": "./skills/engineering/diagnosing-bugs"
+    },
+    {
+      "name": "grill-with-docs",
+      "path": "./skills/engineering/grill-with-docs"
+    },
+    {
+      "name": "triage",
+      "path": "./skills/engineering/triage"
+    },
+    {
+      "name": "improve-codebase-architecture",
+      "path": "./skills/engineering/improve-codebase-architecture"
+    },
+    {
+      "name": "setup-matt-pocock-skills",
+      "path": "./skills/engineering/setup-matt-pocock-skills"
+    },
+    {
+      "name": "tdd",
+      "path": "./skills/engineering/tdd"
+    },
+    {
+      "name": "to-spec",
+      "path": "./skills/engineering/to-spec"
+    },
+    {
+      "name": "to-tickets",
+      "path": "./skills/engineering/to-tickets"
+    },
+    {
+      "name": "wayfinder",
+      "path": "./skills/engineering/wayfinder"
+    },
+    {
+      "name": "implement",
+      "path": "./skills/engineering/implement"
+    },
+    {
+      "name": "prototype",
+      "path": "./skills/engineering/prototype"
+    },
+    {
+      "name": "research",
+      "path": "./skills/engineering/research"
+    },
+    {
+      "name": "domain-modeling",
+      "path": "./skills/engineering/domain-modeling"
+    },
+    {
+      "name": "codebase-design",
+      "path": "./skills/engineering/codebase-design"
+    },
+    {
+      "name": "code-review",
+      "path": "./skills/engineering/code-review"
+    },
+    {
+      "name": "resolving-merge-conflicts",
+      "path": "./skills/engineering/resolving-merge-conflicts"
+    },
+    {
+      "name": "wizard",
+      "path": "./skills/engineering/wizard"
+    },
+    {
+      "name": "grill-me",
+      "path": "./skills/productivity/grill-me"
+    },
+    {
+      "name": "grilling",
+      "path": "./skills/productivity/grilling"
+    },
+    {
+      "name": "handoff",
+      "path": "./skills/productivity/handoff"
+    },
+    {
+      "name": "teach",
+      "path": "./skills/productivity/teach"
+    },
+    {
+      "name": "to-questionnaire",
+      "path": "./skills/productivity/to-questionnaire"
+    },
+    {
+      "name": "wait-what",
+      "path": "./skills/productivity/wait-what"
+    },
+    {
+      "name": "writing-for-agents",
+      "path": "./skills/productivity/writing-for-agents"
+    }
+  ],
+  "transformedSkills": [
+    "ask-matt",
+    "grill-with-docs",
+    "triage",
+    "improve-codebase-architecture",
+    "setup-matt-pocock-skills",
+    "to-spec",
+    "to-tickets",
+    "wayfinder",
+    "implement",
+    "grill-me",
+    "handoff",
+    "teach",
+    "to-questionnaire",
+    "wait-what"
+  ],
+  "transformations": [
+    {
+      "type": "remove-skill-frontmatter",
+      "field": "disable-model-invocation",
+      "aliases": [
+        "disable-model-invocation",
+        "disable_model_invocation"
+      ],
+      "value": true,
+      "reason": "Unsupported by Codex; equivalent policy is preserved via agents/openai.yaml policy.allow_implicit_invocation=false"
+    }
+  ]
+}

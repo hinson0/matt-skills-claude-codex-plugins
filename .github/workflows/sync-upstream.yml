@@ -1,0 +1,58 @@
+name: Sync upstream and build Codex plugin
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-upstream
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout fork
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Merge upstream
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git remote add upstream https://github.com/mattpocock/skills.git
+          git fetch upstream main
+          git merge --no-edit upstream/main
+
+      - name: Build and validate Codex plugin
+        run: |
+          export CODEX_UPSTREAM_SHA="$(git rev-parse upstream/main)"
+          node scripts/build-codex-plugin.mjs
+          node scripts/build-codex-plugin.mjs --check
+          node scripts/validate-codex-plugin.mjs
+          node scripts/test-codex-plugin.mjs
+
+      - name: Test Codex installation
+        run: |
+          npm install --global @openai/codex@0.148.0
+          codex plugin marketplace add "$GITHUB_WORKSPACE"
+          codex plugin add mattpocock-skills@hinson0-matt-skills
+          codex plugin list | grep 'mattpocock-skills@hinson0-matt-skills'
+
+      - name: Commit generated changes
+        run: |
+          git add -- plugins/mattpocock-skills
+          if git diff --cached --quiet; then
+            echo "Codex plugin is already current"
+            exit 0
+          fi
+          git commit -m "chore: sync upstream Codex plugin"
+          git push origin HEAD:main
