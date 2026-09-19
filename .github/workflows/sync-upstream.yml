@@ -44,8 +44,8 @@ jobs:
         run: |
           npm install --global @openai/codex@0.148.0
           codex plugin marketplace add "$GITHUB_WORKSPACE"
-          codex plugin add mattpocock-skills@hinson0-matt-skills
-          codex plugin list | grep 'mattpocock-skills@hinson0-matt-skills'
+          codex plugin add mattpocock-skills@mattpocock
+          codex plugin list | grep 'mattpocock-skills@mattpocock'
 
       - name: Commit generated changes
         run: |
