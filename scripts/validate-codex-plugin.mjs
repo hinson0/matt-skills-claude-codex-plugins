@@ -25,7 +25,7 @@ async function main() {
   const marketplace = await readJson(
     path.join(REPO_ROOT, ".agents", "plugins", "marketplace.json"),
   );
-  assert(marketplace.name === "hinson0-matt-skills", "unexpected marketplace name");
+  assert(marketplace.name === "mattpocock", "unexpected marketplace name");
   assert(
     marketplace.interface?.displayName === "Matt Pocock Skills for Codex (Unofficial)",
     "unexpected marketplace display name",
