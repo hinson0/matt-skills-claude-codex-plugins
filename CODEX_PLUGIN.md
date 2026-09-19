@@ -6,7 +6,7 @@ This fork packages the promoted skills from [mattpocock/skills](https://github.c
 
 ```bash
 codex plugin marketplace add hinson0/matt-skills-claude-codex-plugins --ref main
-codex plugin add mattpocock-skills@hinson0-matt-skills
+codex plugin add mattpocock-skills@mattpocock
 ```
 
 Start a new Codex task after installation. Remove project-local copies previously installed by `npx skills` before using the plugin, otherwise Codex may load duplicate skills.
@@ -16,8 +16,8 @@ Start a new Codex task after installation. Remove project-local copies previousl
 Run the `Sync upstream and build Codex plugin` workflow in GitHub Actions. After it completes:
 
 ```bash
-codex plugin marketplace upgrade hinson0-matt-skills
-codex plugin add mattpocock-skills@hinson0-matt-skills
+codex plugin marketplace upgrade mattpocock
+codex plugin add mattpocock-skills@mattpocock
 ```
 
 Start a new Codex task after reinstalling.
