@@ -1,7 +1,7 @@
 {
   "repository": "https://github.com/mattpocock/skills",
-  "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7",
-  "version": "1.2.3",
+  "commit": "f3fc5632f401156837ee3872f14fe33ccf1024ea",
+  "version": "1.3.1",
   "skills": [
     {
       "name": "ask-matt",
@@ -48,6 +48,10 @@
       "path": "./skills/engineering/implement"
     },
     {
+      "name": "implement-spec",
+      "path": "./skills/engineering/implement-spec"
+    },
+    {
       "name": "prototype",
       "path": "./skills/engineering/prototype"
     },
@@ -68,8 +72,12 @@
       "path": "./skills/engineering/code-review"
     },
     {
-      "name": "resolving-merge-conflicts",
-      "path": "./skills/engineering/resolving-merge-conflicts"
+      "name": "pr",
+      "path": "./skills/engineering/pr"
+    },
+    {
+      "name": "retro",
+      "path": "./skills/engineering/retro"
     },
     {
       "name": "wizard",
@@ -114,6 +122,8 @@
     "to-tickets",
     "wayfinder",
     "implement",
+    "implement-spec",
+    "retro",
     "grill-me",
     "handoff",
     "teach",
