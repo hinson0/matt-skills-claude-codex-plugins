@@ -24,13 +24,16 @@ jobs:
         with:
           node-version: 22
 
-      - name: Merge upstream
+      - name: Test upstream skill sync
+        run: node scripts/test-sync-upstream-skills.mjs
+
+      - name: Sync upstream skill sources
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git remote add upstream https://github.com/mattpocock/skills.git
           git fetch upstream main
-          git merge --no-edit upstream/main
+          node scripts/sync-upstream-skills.mjs
 
       - name: Build and validate Codex plugin
         run: |
