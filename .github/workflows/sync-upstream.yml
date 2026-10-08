@@ -14,26 +14,36 @@ jobs:
   sync:
     runs-on: ubuntu-latest
     steps:
+      - name: Check sync token
+        env:
+          UPSTREAM_SYNC_TOKEN: ${{ secrets.UPSTREAM_SYNC_TOKEN }}
+        run: |
+          if [ -z "$UPSTREAM_SYNC_TOKEN" ]; then
+            echo "::error::Add the UPSTREAM_SYNC_TOKEN repository secret with Contents and Workflows write permissions"
+            exit 1
+          fi
+
       - name: Checkout fork
         uses: actions/checkout@v7
         with:
           fetch-depth: 0
+          token: ${{ secrets.UPSTREAM_SYNC_TOKEN }}
 
       - name: Set up Node.js
         uses: actions/setup-node@v7
         with:
           node-version: 22
 
-      - name: Test upstream skill sync
-        run: node scripts/test-sync-upstream-skills.mjs
+      - name: Test upstream history sync
+        run: node scripts/test-upstream-history.mjs
 
-      - name: Sync upstream skill sources
+      - name: Merge upstream
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git remote add upstream https://github.com/mattpocock/skills.git
           git fetch upstream main
-          node scripts/sync-upstream-skills.mjs
+          git merge --no-edit upstream/main
 
       - name: Build and validate Codex plugin
         run: |
@@ -55,7 +65,7 @@ jobs:
           git add -- plugins/mattpocock-skills
           if git diff --cached --quiet; then
             echo "Codex plugin is already current"
-            exit 0
+          else
+            git commit -m "chore: sync upstream Codex plugin"
           fi
-          git commit -m "chore: sync upstream Codex plugin"
           git push origin HEAD:main

@@ -22,7 +22,11 @@ codex plugin add mattpocock-skills@mattpocock
 
 Start a new Codex task after reinstalling.
 
-Each run imports the latest skill sources, documentation, and Claude plugin skill list from upstream `main`, then rebuilds the Codex plugin. It mirrors added, renamed, and removed skills. The fork's GitHub workflows and marketplace configuration stay local, so the workflow uses the default `GITHUB_TOKEN` without a separate personal access token. `UPSTREAM.json` records the imported upstream commit; the workflow imports a source snapshot rather than merging upstream Git history.
+Each run merges upstream `main` with its original commit history, then rebuilds the Codex plugin. The fork's packaging files remain part of the merged branch. Upstream GitHub workflows are merged too. `UPSTREAM.json` records the upstream commit used for the generated plugin. A successful run updates both the Git history and the Codex plugin, so no separate `Update branch` operation is needed.
+
+Create a fine-grained personal access token for this fork with **Contents: read and write** and **Workflows: write**. Store it as the Actions repository secret `UPSTREAM_SYNC_TOKEN`. The checkout and push use this token because the default `GITHUB_TOKEN` cannot push new upstream workflow files. Replace the secret when the token expires.
+
+The workflow pushes merged history even when the generated plugin has no changes. If Git reports a merge conflict, resolve it before retrying the workflow; the workflow does not discard fork commits or force-push.
 
 ## Packaging contract
 
@@ -39,15 +43,15 @@ node scripts/validate-codex-plugin.mjs
 node scripts/test-codex-plugin.mjs
 ```
 
-To sync the sources locally first:
+To merge upstream locally first:
 
 ```bash
 git fetch upstream main
-node scripts/test-sync-upstream-skills.mjs
-node scripts/sync-upstream-skills.mjs
+node scripts/test-upstream-history.mjs
+git merge --no-edit upstream/main
 ```
 
-Commit or stash changes to skill sources before syncing. The sync command stages the imported files and leaves fork packaging files untouched.
+Commit or stash local changes before merging. Rebuild and validate the plugin after the merge, then commit the generated changes and push the branch.
 
 Claude Code users should continue using the official plugin:
 
